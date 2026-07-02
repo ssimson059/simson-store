@@ -2,21 +2,40 @@ import { Link } from "react-router-dom";
 
 function Register() {
   return (
-    <div className="page-shell">
-      <header className="topbar">
-        <div>
-          <p className="eyebrow">REGISTER</p>
-          <h1>Create your account.</h1>
-        </div>
-        <nav className="nav-links">
-          <Link to="/login">Back to login</Link>
-        </nav>
-      </header>
+    <div className="min-h-screen flex justify-center items-center bg-gray-100">
+      <div className="bg-white p-8 rounded-xl shadow-lg w-96">
+        <h1 className="text-3xl font-bold text-center mb-6">
+          Register
+        </h1>
 
-      <div className="hero-card">
-        <h2>Join SIMSON Store</h2>
-        <p>Register to save addresses, track orders, and get updates.</p>
-        <Link className="btn btn-primary" to="/profile">Create account</Link>
+        <input
+          type="text"
+          placeholder="Full Name"
+          className="w-full border p-3 rounded mb-4"
+        />
+
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border p-3 rounded mb-4"
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          className="w-full border p-3 rounded mb-4"
+        />
+
+        <button className="w-full bg-green-600 text-white p-3 rounded">
+          Create Account
+        </button>
+
+        <p className="text-center mt-4">
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-600">
+            Login
+          </Link>
+        </p>
       </div>
     </div>
   );

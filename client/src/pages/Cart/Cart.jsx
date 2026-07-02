@@ -1,36 +1,61 @@
 import { useCart } from "../../context/CartContext";
 
 function Cart() {
-  const { cart, removeFromCart } = useCart();
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+const {
+cart,
+increase,
+decrease,
+removeFromCart
+} = useCart();
 
-  return (
-    <div style={{ padding: "40px" }}>
-      <h1>Shopping Cart</h1>
+const total = cart.reduce(
+(sum,item)=>sum+item.price*item.quantity,
+0
+);
 
-      {cart.map((item) => (
-        <div key={item.id}>
-          <h3>{item.name}</h3>
+return(
 
-          <p>₹{item.price}</p>
+<div>
 
-          <p>Qty : {item.quantity}</p>
+<h1>Shopping Cart</h1>
 
-          <button onClick={() => removeFromCart(item.id)}>
-            Remove
-          </button>
+{
+cart.map(item=>(
 
-          <hr />
-        </div>
-      ))}
+<div key={item.id}>
 
-      <h2>Total : ₹{total}</h2>
-    </div>
-  );
+<img src={item.image} width="120"/>
+
+<h2>{item.name}</h2>
+
+<h3>₹{item.price}</h3>
+
+<button onClick={()=>decrease(item.id)}>-</button>
+
+{item.quantity}
+
+<button onClick={()=>increase(item.id)}>+</button>
+
+<button onClick={()=>removeFromCart(item.id)}>
+Remove
+</button>
+
+</div>
+
+))
+}
+
+<h2>Total : ₹{total}</h2>
+
+<button>
+Proceed Checkout
+</button>
+
+</div>
+
+)
+
 }
 
 export default Cart;

@@ -1,45 +1,37 @@
-function Product() {
-    const products = [
+const products = [
   {
     id: 1,
     name: "iPhone 16 Pro",
     price: 129999,
-    image: "https://picsum.photos/300/300?random=1",
+    oldPrice: 149999,
+    image: "/images/iphone.jpg",
+    category: "Electronics",
+    rating: 4.8,
+    description:
+      "Apple iPhone 16 Pro with A18 chip, 48MP camera and 256GB storage."
   },
   {
     id: 2,
-    name: "Samsung S25",
+    name: "Samsung Galaxy S25",
     price: 89999,
-    image: "https://picsum.photos/300/300?random=2",
+    oldPrice: 99999,
+    image: "/images/samsung.jpg",
+    category: "Electronics",
+    rating: 4.7,
+    description:
+      "Samsung flagship smartphone with AMOLED display."
   },
   {
     id: 3,
-    name: "Dell XPS Laptop",
-    price: 99999,
-    image: "https://picsum.photos/300/300?random=3",
-  },
-  {
-    id: 4,
-    name: "Nike Shoes",
-    price: 5999,
-    image: "https://picsum.photos/300/300?random=4",
-  },
-  {
-    id: 5,
-    name: "Sony Headphones",
-    price: 12999,
-    image: "https://picsum.photos/300/300?random=5",
-  },
-  {
-    id: 6,
-    name: "Smart Watch",
-    price: 8999,
-    image: "https://picsum.photos/300/300?random=6",
-  },
+    name: "Men's Hoodie",
+    price: 1999,
+    oldPrice: 2999,
+    image: "/images/hoodie.jpg",
+    category: "Fashion",
+    rating: 4.5,
+    description:
+      "Premium cotton hoodie for everyday comfort."
+  }
 ];
 
 export default products;
-  return <div>Product Page</div>;
-}
-
-export default Product;

@@ -1,25 +1,42 @@
 import { useParams } from "react-router-dom";
 import products from "../../data/products";
-import { useCart } from "../../context/CartContext";
 
 function ProductDetails() {
   const { id } = useParams();
 
-  const { addToCart } = useCart();
-
   const product = products.find((p) => p.id === Number(id));
 
+  if (!product) {
+    return <h2>Product Not Found</h2>;
+  }
+
   return (
-    <div style={{ padding: "40px" }}>
-      <img src={product.image} width="300" />
+    <div style={{padding:"40px",display:"flex",gap:"50px"}}>
+      <img
+        src={product.image}
+        alt={product.name}
+        style={{width:"400px",borderRadius:"10px"}}
+      />
 
-      <h1>{product.name}</h1>
+      <div>
+        <h1>{product.name}</h1>
 
-      <h2>₹{product.price}</h2>
+        <h2 style={{color:"green"}}>₹{product.price}</h2>
 
-      <button onClick={() => addToCart(product)}>
-        Add To Cart
-      </button>
+        <h4 style={{textDecoration:"line-through"}}>
+          ₹{product.oldPrice}
+        </h4>
+
+        <h3>⭐ {product.rating}</h3>
+
+        <p>{product.description}</p>
+
+        <button>Add To Cart</button>
+
+        <button style={{marginLeft:20}}>
+          Buy Now
+        </button>
+      </div>
     </div>
   );
 }

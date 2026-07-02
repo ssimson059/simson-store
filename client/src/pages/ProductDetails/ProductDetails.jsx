@@ -1,44 +1,50 @@
-import { Link, useParams } from "react-router-dom";
-
-const products = {
-  1: { name: "Aurora Headphones", price: "$129", description: "Immersive sound with noise cancellation and 30-hour battery life." },
-  2: { name: "Nova Smartwatch", price: "$199", description: "Track workouts, notifications, and health insights from your wrist." },
-  3: { name: "Lumen Laptop Stand", price: "$79", description: "Elevate your workspace with ergonomic aluminum construction." },
-  4: { name: "Urban Jacket", price: "$89", description: "Weather-ready outerwear with a slim, modern silhouette." },
-  5: { name: "Studio Tote", price: "$64", description: "A polished everyday tote with ample room for essentials." },
-  6: { name: "Luna Sneakers", price: "$109", description: "Lightweight comfort for long days and city strolls." },
-};
+import { useParams, Link } from "react-router-dom";
+import products from "../../data/products";
+import { useCart } from "../../context/CartContext";
 
 function ProductDetails() {
   const { id } = useParams();
-  const product = products[id];
+  const { addToCart } = useCart();
+
+  const product = products.find((p) => p.id === Number(id));
 
   if (!product) {
-    return (
-      <div className="page-shell">
-        <h1>Product not found</h1>
-        <Link to="/">Return home</Link>
-      </div>
-    );
+    return <h2>Product Not Found</h2>;
   }
 
   return (
-    <div className="page-shell">
-      <header className="topbar">
-        <div>
-          <p className="eyebrow">PRODUCT</p>
-          <h1>{product.name}</h1>
-        </div>
-        <nav className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/cart">Cart</Link>
-        </nav>
-      </header>
+    <div className="max-w-6xl mx-auto p-8 grid md:grid-cols-2 gap-10">
+      <img
+        src={product.image}
+        alt={product.name}
+        className="w-full rounded-xl shadow-lg"
+      />
 
-      <div className="hero-card">
-        <h2>{product.price}</h2>
-        <p>{product.description}</p>
-        <Link className="btn btn-primary" to="/checkout">Buy now</Link>
+      <div>
+        <h1 className="text-4xl font-bold">{product.name}</h1>
+
+        <p className="text-green-600 text-3xl font-bold mt-4">
+          ₹{product.price}
+        </p>
+
+        <p className="mt-4 text-gray-600">
+          {product.description}
+        </p>
+
+        <div className="flex gap-4 mt-8">
+          <button
+            onClick={() => addToCart(product)}
+            className="bg-yellow-400 px-6 py-3 rounded-lg font-bold hover:bg-yellow-500"
+          >
+            Add To Cart
+          </button>
+
+          <Link to="/cart">
+            <button className="bg-orange-500 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-600">
+              Go To Cart
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
